@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.CurriculumMapper" >
+  <resultMap id="BaseResultMap" type="com.example.model.Curriculum" >
+    <id column="cur_id" property="curId" jdbcType="INTEGER" />
+    <result column="cur_semester" property="curSemester" jdbcType="VARCHAR" />
+    <result column="cur_no" property="curNo" jdbcType="VARCHAR" />
+    <result column="cur_name" property="curName" jdbcType="VARCHAR" />
+    <result column="cur_credit" property="curCredit" jdbcType="VARCHAR" />
+    <result column="cur_hour" property="curHour" jdbcType="VARCHAR" />
+    <result column="cur_assessment" property="curAssessment" jdbcType="VARCHAR" />
+    <result column="cur_attributes" property="curAttributes" jdbcType="VARCHAR" />
+    <result column="cur_nature" property="curNature" jdbcType="VARCHAR" />
+    <result column="staff_no" property="staffNo" jdbcType="VARCHAR" />
+    <result column="del_flg" property="delFlg" jdbcType="BIT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_id" property="updateId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cur_id, cur_semester, cur_no, cur_name, cur_credit, cur_hour, cur_assessment, cur_attributes, 
+    cur_nature, staff_no, del_flg, version, create_id, create_time, update_id, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from curriculum
+    where cur_id = #{curId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from curriculum
+    where cur_id = #{curId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.model.Curriculum" >
+    insert into curriculum (cur_id, cur_semester, cur_no, 
+      cur_name, cur_credit, cur_hour, 
+      cur_assessment, cur_attributes, cur_nature, 
+      staff_no, del_flg, version, 
+      create_id, create_time, update_id, 
+      update_time)
+    values (#{curId,jdbcType=INTEGER}, #{curSemester,jdbcType=VARCHAR}, #{curNo,jdbcType=VARCHAR}, 
+      #{curName,jdbcType=VARCHAR}, #{curCredit,jdbcType=VARCHAR}, #{curHour,jdbcType=VARCHAR}, 
+      #{curAssessment,jdbcType=VARCHAR}, #{curAttributes,jdbcType=VARCHAR}, #{curNature,jdbcType=VARCHAR}, 
+      #{staffNo,jdbcType=VARCHAR}, #{delFlg,jdbcType=BIT}, #{version,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateId,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.model.Curriculum" >
+    insert into curriculum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="curId != null" >
+        cur_id,
+      </if>
+      <if test="curSemester != null" >
+        cur_semester,
+      </if>
+      <if test="curNo != null" >
+        cur_no,
+      </if>
+      <if test="curName != null" >
+        cur_name,
+      </if>
+      <if test="curCredit != null" >
+        cur_credit,
+      </if>
+      <if test="curHour != null" >
+        cur_hour,
+      </if>
+      <if test="curAssessment != null" >
+        cur_assessment,
+      </if>
+      <if test="curAttributes != null" >
+        cur_attributes,
+      </if>
+      <if test="curNature != null" >
+        cur_nature,
+      </if>
+      <if test="staffNo != null" >
+        staff_no,
+      </if>
+      <if test="delFlg != null" >
+        del_flg,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="curId != null" >
+        #{curId,jdbcType=INTEGER},
+      </if>
+      <if test="curSemester != null" >
+        #{curSemester,jdbcType=VARCHAR},
+      </if>
+      <if test="curNo != null" >
+        #{curNo,jdbcType=VARCHAR},
+      </if>
+      <if test="curName != null" >
+        #{curName,jdbcType=VARCHAR},
+      </if>
+      <if test="curCredit != null" >
+        #{curCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="curHour != null" >
+        #{curHour,jdbcType=VARCHAR},
+      </if>
+      <if test="curAssessment != null" >
+        #{curAssessment,jdbcType=VARCHAR},
+      </if>
+      <if test="curAttributes != null" >
+        #{curAttributes,jdbcType=VARCHAR},
+      </if>
+      <if test="curNature != null" >
+        #{curNature,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNo != null" >
+        #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null" >
+        #{delFlg,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.model.Curriculum" >
+    update curriculum
+    <set >
+      <if test="curSemester != null" >
+        cur_semester = #{curSemester,jdbcType=VARCHAR},
+      </if>
+      <if test="curNo != null" >
+        cur_no = #{curNo,jdbcType=VARCHAR},
+      </if>
+      <if test="curName != null" >
+        cur_name = #{curName,jdbcType=VARCHAR},
+      </if>
+      <if test="curCredit != null" >
+        cur_credit = #{curCredit,jdbcType=VARCHAR},
+      </if>
+      <if test="curHour != null" >
+        cur_hour = #{curHour,jdbcType=VARCHAR},
+      </if>
+      <if test="curAssessment != null" >
+        cur_assessment = #{curAssessment,jdbcType=VARCHAR},
+      </if>
+      <if test="curAttributes != null" >
+        cur_attributes = #{curAttributes,jdbcType=VARCHAR},
+      </if>
+      <if test="curNature != null" >
+        cur_nature = #{curNature,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNo != null" >
+        staff_no = #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null" >
+        del_flg = #{delFlg,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where cur_id = #{curId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.model.Curriculum" >
+    update curriculum
+    set cur_semester = #{curSemester,jdbcType=VARCHAR},
+      cur_no = #{curNo,jdbcType=VARCHAR},
+      cur_name = #{curName,jdbcType=VARCHAR},
+      cur_credit = #{curCredit,jdbcType=VARCHAR},
+      cur_hour = #{curHour,jdbcType=VARCHAR},
+      cur_assessment = #{curAssessment,jdbcType=VARCHAR},
+      cur_attributes = #{curAttributes,jdbcType=VARCHAR},
+      cur_nature = #{curNature,jdbcType=VARCHAR},
+      staff_no = #{staffNo,jdbcType=VARCHAR},
+      del_flg = #{delFlg,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE}
+    where cur_id = #{curId,jdbcType=INTEGER}
+  </update>
+</mapper>

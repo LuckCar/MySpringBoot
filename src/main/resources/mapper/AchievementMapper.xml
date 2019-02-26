@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.AchievementMapper" >
+  <resultMap id="BaseResultMap" type="com.example.model.Achievement" >
+    <id column="ach_id" property="achId" jdbcType="INTEGER" />
+    <result column="staff_no" property="staffNo" jdbcType="VARCHAR" />
+    <result column="cur_no" property="curNo" jdbcType="VARCHAR" />
+    <result column="ach_grade" property="achGrade" jdbcType="VARCHAR" />
+    <result column="del_flg" property="delFlg" jdbcType="BIT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_id" property="updateId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ach_id, staff_no, cur_no, ach_grade, del_flg, version, create_id, create_time, update_id, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from achievement
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from achievement
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.model.Achievement" >
+    insert into achievement (ach_id, staff_no, cur_no, 
+      ach_grade, del_flg, version, 
+      create_id, create_time, update_id, 
+      update_time)
+    values (#{achId,jdbcType=INTEGER}, #{staffNo,jdbcType=VARCHAR}, #{curNo,jdbcType=VARCHAR}, 
+      #{achGrade,jdbcType=VARCHAR}, #{delFlg,jdbcType=BIT}, #{version,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateId,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.model.Achievement" >
+    insert into achievement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="achId != null" >
+        ach_id,
+      </if>
+      <if test="staffNo != null" >
+        staff_no,
+      </if>
+      <if test="curNo != null" >
+        cur_no,
+      </if>
+      <if test="achGrade != null" >
+        ach_grade,
+      </if>
+      <if test="delFlg != null" >
+        del_flg,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="achId != null" >
+        #{achId,jdbcType=INTEGER},
+      </if>
+      <if test="staffNo != null" >
+        #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="curNo != null" >
+        #{curNo,jdbcType=VARCHAR},
+      </if>
+      <if test="achGrade != null" >
+        #{achGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null" >
+        #{delFlg,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.model.Achievement" >
+    update achievement
+    <set >
+      <if test="staffNo != null" >
+        staff_no = #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="curNo != null" >
+        cur_no = #{curNo,jdbcType=VARCHAR},
+      </if>
+      <if test="achGrade != null" >
+        ach_grade = #{achGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlg != null" >
+        del_flg = #{delFlg,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.model.Achievement" >
+    update achievement
+    set staff_no = #{staffNo,jdbcType=VARCHAR},
+      cur_no = #{curNo,jdbcType=VARCHAR},
+      ach_grade = #{achGrade,jdbcType=VARCHAR},
+      del_flg = #{delFlg,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE}
+    where ach_id = #{achId,jdbcType=INTEGER}
+  </update>
+</mapper>

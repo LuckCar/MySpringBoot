@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.example.model.Teacher" >
+    <id column="tea_id" property="teaId" jdbcType="INTEGER" />
+    <result column="tea_no" property="teaNo" jdbcType="VARCHAR" />
+    <result column="tea_name" property="teaName" jdbcType="VARCHAR" />
+    <result column="tea_gender" property="teaGender" jdbcType="VARCHAR" />
+    <result column="tea_title" property="teaTitle" jdbcType="VARCHAR" />
+    <result column="tea_depart" property="teaDepart" jdbcType="VARCHAR" />
+    <result column="tea_tel" property="teaTel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tea_id, tea_no, tea_name, tea_gender, tea_title, tea_depart, tea_tel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teacher
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.model.Teacher" >
+    insert into teacher (tea_id, tea_no, tea_name, 
+      tea_gender, tea_title, tea_depart, 
+      tea_tel)
+    values (#{teaId,jdbcType=INTEGER}, #{teaNo,jdbcType=VARCHAR}, #{teaName,jdbcType=VARCHAR}, 
+      #{teaGender,jdbcType=VARCHAR}, #{teaTitle,jdbcType=VARCHAR}, #{teaDepart,jdbcType=VARCHAR}, 
+      #{teaTel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.model.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teaId != null" >
+        tea_id,
+      </if>
+      <if test="teaNo != null" >
+        tea_no,
+      </if>
+      <if test="teaName != null" >
+        tea_name,
+      </if>
+      <if test="teaGender != null" >
+        tea_gender,
+      </if>
+      <if test="teaTitle != null" >
+        tea_title,
+      </if>
+      <if test="teaDepart != null" >
+        tea_depart,
+      </if>
+      <if test="teaTel != null" >
+        tea_tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teaId != null" >
+        #{teaId,jdbcType=INTEGER},
+      </if>
+      <if test="teaNo != null" >
+        #{teaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null" >
+        #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaGender != null" >
+        #{teaGender,jdbcType=VARCHAR},
+      </if>
+      <if test="teaTitle != null" >
+        #{teaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDepart != null" >
+        #{teaDepart,jdbcType=VARCHAR},
+      </if>
+      <if test="teaTel != null" >
+        #{teaTel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.model.Teacher" >
+    update teacher
+    <set >
+      <if test="teaNo != null" >
+        tea_no = #{teaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teaName != null" >
+        tea_name = #{teaName,jdbcType=VARCHAR},
+      </if>
+      <if test="teaGender != null" >
+        tea_gender = #{teaGender,jdbcType=VARCHAR},
+      </if>
+      <if test="teaTitle != null" >
+        tea_title = #{teaTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="teaDepart != null" >
+        tea_depart = #{teaDepart,jdbcType=VARCHAR},
+      </if>
+      <if test="teaTel != null" >
+        tea_tel = #{teaTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.model.Teacher" >
+    update teacher
+    set tea_no = #{teaNo,jdbcType=VARCHAR},
+      tea_name = #{teaName,jdbcType=VARCHAR},
+      tea_gender = #{teaGender,jdbcType=VARCHAR},
+      tea_title = #{teaTitle,jdbcType=VARCHAR},
+      tea_depart = #{teaDepart,jdbcType=VARCHAR},
+      tea_tel = #{teaTel,jdbcType=VARCHAR}
+    where tea_id = #{teaId,jdbcType=INTEGER}
+  </update>
+</mapper>
